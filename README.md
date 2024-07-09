@@ -7,4 +7,7 @@ poetry install
 qlever setup-config olympics
 qlever get-data
 qlever index
+qlever start
+
+qlever example-queries
 ```
