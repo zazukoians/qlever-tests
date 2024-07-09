@@ -6,7 +6,9 @@ The `qlever` command is using Docker under the hood to spawn the QLever server a
 
 By inspecting how the `qlever` command is implemented, we can see a bit how the different parts are started.
 
-You can get rid of the `qlever` command and start the QLever server and UI directly by using the Docker Compose stack:
+You can get rid of the `qlever` command and start the QLever server and UI directly by using the Docker Compose stack.
+
+Put your data in the `docker/server/data.nq` file, and run the following command:
 
 ```sh
 docker compose up
