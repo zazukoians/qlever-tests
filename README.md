@@ -3,4 +3,7 @@
 ```sh
 poetry shell
 poetry install
+
+qlever setup-config olympics
+qlever get-data
 ```
