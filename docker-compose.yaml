@@ -1,0 +1,28 @@
+services:
+  server:
+    image: adfreiburg/qlever
+    stop_grace_period: 0s
+    ports:
+      - "7001:7001"
+    entrypoint: ["/custom/entrypoint.sh"]
+    environment:
+      MEMORY_FOR_QUERIES: 1G
+      CACHE_MAX_SIZE_GB: 4G
+      CACHE_MAX_SIZE_GB_SINGLE_ENTRY: 1G
+    volumes:
+      - ./docker/server/:/custom/
+
+  ui:
+    image: adfreiburg/qlever-ui
+    stop_grace_period: 0s
+    platform: linux/amd64
+    ports:
+      - "7002:7002"
+    depends_on:
+      - server
+    entrypoint: ["/custom/entrypoint.sh"]
+    environment:
+      QLEVER_SERVER_ENDPOINT: "http://127.0.0.1:7001"
+      QLEVER_UI_PORT: 7002
+    volumes:
+      - ./docker/ui/:/custom/
