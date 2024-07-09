@@ -1,6 +1,6 @@
 # Qleverfile for Olympics, use with https://github.com/ad-freiburg/qlever-control
 #
-# qlever get-data  # downloads .zip file of size 13 MB, uncompressed to 323 MB 
+# qlever get-data  # downloads .zip file of size 13 MB, uncompressed to 323 MB
 # qlever index     # takes ~10 seconds and ~1 GB RAM (on an AMD Ryzen 9 5900X)
 # qlever start     # starts the server (instant)
 
@@ -17,6 +17,7 @@ CAT_INPUT_FILES = cat ${INPUT_FILES}
 SETTINGS_JSON   = { "ascii-prefixes-only": false, "num-triples-per-batch": 100000 }
 
 [server]
+HOST_NAME          = 127.0.0.1
 PORT               = 7019
 ACCESS_TOKEN       = ${data:NAME}_7643543846_Zs6nw7yi3Z9m
 MEMORY_FOR_QUERIES = 5G
@@ -29,3 +30,4 @@ IMAGE  = docker.io/adfreiburg/qlever:latest
 
 [ui]
 UI_CONFIG = olympics
+UI_PORT = 7002
