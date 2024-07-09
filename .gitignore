@@ -1,2 +1,3 @@
 .venv/
-*.nt
+olympics.*
+.stxxl

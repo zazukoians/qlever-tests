@@ -6,4 +6,5 @@ poetry install
 
 qlever setup-config olympics
 qlever get-data
+qlever index
 ```
