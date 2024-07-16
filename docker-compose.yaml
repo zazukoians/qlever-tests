@@ -1,6 +1,7 @@
 services:
   server:
     image: adfreiburg/qlever
+    user: 1000:1000
     stop_grace_period: 0s
     ports:
       - "7001:7001"
