@@ -2,3 +2,7 @@
 olympics.*
 .stxxl
 *.tmp
+
+docker/server/*.tar.gz
+docker/server/*.nt
+!docker/server/data.nt

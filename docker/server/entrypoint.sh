@@ -7,8 +7,12 @@ QLEVER_ACCESS_TOKEN="10aWWjuk1dhYfTir"
 QLEVER_ACCESS_TOKEN="dataset_7643543846_Zs6nw7yi3Z9m"
 QLEVER_DATASET_JSON_SETTINGS='{ "ascii-prefixes-only": false, "num-triples-per-batch": 100000 }'
 QLEVER_DATASET_DATA_PATH="${QLEVER_DATASET_DATA_PATH:-"/custom/data.nt"}"
-QLEVER_DATASET_SOURCE_KIND="${QLEVER_DATASET_SOURCE:-"file"}"
+QLEVER_DATASET_SOURCE_KIND="${QLEVER_DATASET_SOURCE_KIND:-"file"}"
 QLEVER_DATASET_SOURCE_LOCATION="${QLEVER_DATASET_SOURCE_LOCATION:-"/custom/data.nt"}"
+QLEVER_DATASET_SOURCE_EXTRACT="${QLEVER_DATASET_SOURCE_EXTRACT:-"false"}"
+QLEVER_DATASET_SOURCE_EXTRACTED_NAME="${QLEVER_DATASET_SOURCE_EXTRACTED_NAME:-"data.nt"}"
+
+echo "INFO: Kind of dataset source is ${QLEVER_DATASET_SOURCE_KIND}"
 
 # Fetch the data file
 if [ "${QLEVER_DATASET_SOURCE_KIND}" = "file" ]; then
@@ -30,13 +34,22 @@ else
   exit 1
 fi
 
+# If the data file is an archive, extract it
+if [ "${QLEVER_DATASET_SOURCE_EXTRACT}" = "tar.gz" ]; then
+  echo "INFO: Extracting data file (${QLEVER_DATASET_SOURCE_EXTRACT})…"
+  mv "${QLEVER_DATASET_DATA_PATH}" "${QLEVER_DATASET_DATA_PATH}.tar.gz"
+  tar -xzf "${QLEVER_DATASET_DATA_PATH}.tar.gz"
+  rm -f "${QLEVER_DATASET_DATA_PATH}.tar.gz"
+  mv "${QLEVER_DATASET_SOURCE_EXTRACTED_NAME}" "${QLEVER_DATASET_DATA_PATH}"
+fi
+
 # Generate settings file
 echo "${QLEVER_DATASET_JSON_SETTINGS}" > dataset.settings.json
 
 # Create index
 cat "${QLEVER_DATASET_DATA_PATH}" \
   | IndexBuilderMain \
-      -F ttl \
+      -F nt \
       -f - \
       -i dataset \
       -s dataset.settings.json \
