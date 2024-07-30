@@ -4,12 +4,11 @@ version = "0.1.0"
 description = ""
 authors = ["Ludovic Muller <ludovicmuller1@gmail.com>"]
 readme = "README.md"
-packages = [{include = "qlever_cli"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.10"
 qlever = "^0.5.3"
-
 
 [build-system]
 requires = ["poetry-core"]
