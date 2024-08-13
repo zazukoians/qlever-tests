@@ -2,6 +2,8 @@
 
 ## Using Docker Compose to run QLever
 
+### Local file
+
 The `qlever` command is using Docker under the hood to spawn the QLever server and the UI.
 
 By inspecting how the `qlever` command is implemented, we can see a bit how the different parts are started.
@@ -11,8 +13,8 @@ You can get rid of the `qlever` command and start the QLever server and UI direc
 Put your data in the `docker/server/data.nq` file, and run the following commands:
 
 ```sh
-docker compose pull # Just make sure we are using the latest images
-docker compose up # Start the stack
+docker compose --profile local build # Just make sure we are using the latest images
+docker compose --profile local up # Start the stack
 ```
 
 And then you can access the UI at `http://localhost:7002`.
@@ -20,10 +22,29 @@ And then you can access the UI at `http://localhost:7002`.
 To stop the stack, you can use:
 
 ```sh
-docker compose down
+docker compose --profile local down
 ```
 
 Using the Docker Compose stack is the easiest way to start the QLever server and the UI.
+
+### Olympics demo
+
+The Docker Compose Stack is also able to run the Olympics demo.
+
+Just run the following commands:
+
+```sh
+docker compose --profile olympics build # Just make sure we are using the latest images
+docker compose --profile olympics up # Start the stack
+```
+
+And then you can access the UI at `http://localhost:7002`.
+
+To stop the stack, you can use:
+
+```sh
+docker compose --profile olympics down
+```
 
 ## Next steps
 
