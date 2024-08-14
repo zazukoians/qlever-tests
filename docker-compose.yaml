@@ -5,6 +5,7 @@ services:
   server-olympics:
     profiles:
       - olympics
+    image: ghcr.io/zazukoians/qlever-server:latest
     build:
       context: ./docker/
       dockerfile: ./server.Dockerfile
@@ -18,6 +19,7 @@ services:
   ui-olympics:
     profiles:
       - olympics
+    image: ghcr.io/zazukoians/qlever-ui:latest
     build:
       context: ./docker/
       dockerfile: ./ui.Dockerfile
@@ -35,6 +37,7 @@ services:
   server-local:
     profiles:
       - local
+    image: ghcr.io/zazukoians/qlever-server:latest
     build:
       context: ./docker/
       dockerfile: ./server.Dockerfile
@@ -50,6 +53,7 @@ services:
   ui-local:
     profiles:
       - local
+    image: ghcr.io/zazukoians/qlever-ui:latest
     build:
       context: ./docker/
       dockerfile: ./ui.Dockerfile

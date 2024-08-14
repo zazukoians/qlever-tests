@@ -9,7 +9,7 @@ It is possible to start the QLever server and the UI directly by using the Docke
 Put your data in the `docker/server/data.nq` file, and run the following commands:
 
 ```sh
-docker compose --profile local build # Just make sure we are using the latest images
+docker compose --profile local pull # Just make sure we are using the latest images
 docker compose --profile local up # Start the stack
 ```
 
@@ -30,7 +30,7 @@ The Docker Compose Stack is also able to run the Olympics demo.
 Just run the following commands:
 
 ```sh
-docker compose --profile olympics build # Just make sure we are using the latest images
+docker compose --profile olympics pull # Just make sure we are using the latest images
 docker compose --profile olympics up # Start the stack
 ```
 
