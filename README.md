@@ -41,3 +41,7 @@ To stop the stack, you can use:
 ```sh
 docker compose --profile olympics down
 ```
+
+## Relevant information about the QLever
+
+- [Some features are still missing](https://github.com/ad-freiburg/qlever/issues/615), but are being worked on.
