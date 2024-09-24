@@ -1,4 +1,4 @@
-ARG QLEVER_VERSION="0.5.3"
+ARG QLEVER_VERSION="0.5.6"
 
 FROM index.docker.io/adfreiburg/qlever-ui:latest
 
