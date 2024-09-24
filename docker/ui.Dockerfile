@@ -1,6 +1,6 @@
 ARG QLEVER_VERSION="0.5.6"
 
-FROM index.docker.io/adfreiburg/qlever-ui:latest
+FROM index.docker.io/adfreiburg/qlever-ui:latest@sha256:322218cb7e3190ba88f6e8448f32394a442e917ce77b836c555b833e9943a864
 
 ARG QLEVER_VERSION
 
