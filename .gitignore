@@ -7,3 +7,5 @@ olympics.*
 docker/server/*.tar.gz
 docker/server/*.nt
 !docker/server/data.nt
+
+node_modules/
