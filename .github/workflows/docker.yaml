@@ -11,9 +11,17 @@ jobs:
   server:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3.7.0
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -52,13 +60,34 @@ jobs:
           platforms: |
             linux/amd64
             linux/arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Sign the images with GitHub OIDC Token
+        env:
+          DIGEST: ${{ steps.docker_build.outputs.digest }}
+          TAGS: ${{ steps.docker_meta.outputs.tags }}
+        run: |
+          images=""
+          for tag in ${TAGS}; do
+            images+="${tag}@${DIGEST} "
+          done
+          cosign sign --yes ${images}
 
   ui:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3.7.0
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -97,3 +126,16 @@ jobs:
           platforms: |
             linux/amd64
             linux/arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Sign the images with GitHub OIDC Token
+        env:
+          DIGEST: ${{ steps.docker_build.outputs.digest }}
+          TAGS: ${{ steps.docker_meta.outputs.tags }}
+        run: |
+          images=""
+          for tag in ${TAGS}; do
+            images+="${tag}@${DIGEST} "
+          done
+          cosign sign --yes ${images}

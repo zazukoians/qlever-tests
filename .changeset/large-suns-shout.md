@@ -1,0 +1,5 @@
+---
+"qlever": minor
+---
+
+First release
