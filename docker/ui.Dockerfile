@@ -1,6 +1,6 @@
 ARG QLEVER_VERSION="0.5.7"
 
-# Version from: 10/06/2024
+# Version from: 06/10/2024
 FROM index.docker.io/adfreiburg/qlever-ui:latest@sha256:0eedb37f6dc6fda9d022da2731ee346c97aec77d61d4a8d240139c1ce02354d8
 
 ARG QLEVER_VERSION
