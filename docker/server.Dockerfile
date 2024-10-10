@@ -1,6 +1,7 @@
-ARG QLEVER_VERSION="0.5.6"
+ARG QLEVER_VERSION="0.5.7"
 
-FROM index.docker.io/adfreiburg/qlever:commit-b70df93
+# 10/10/24
+FROM index.docker.io/adfreiburg/qlever:commit-9890517
 
 ARG QLEVER_VERSION
 
