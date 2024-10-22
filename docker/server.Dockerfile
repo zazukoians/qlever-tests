@@ -1,8 +1,8 @@
 # Check latest version here: https://pypi.org/project/qlever/
 ARG QLEVER_VERSION="0.5.8"
 
-# Version from: 10/10/2024
-FROM index.docker.io/adfreiburg/qlever:commit-b97c44c
+# Version from: 21/10/2024
+FROM index.docker.io/adfreiburg/qlever:commit-2ebca4d
 
 ARG QLEVER_VERSION
 
