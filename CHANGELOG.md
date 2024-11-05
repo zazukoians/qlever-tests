@@ -1,5 +1,11 @@
 # qlever
 
+## 0.1.3
+
+### Patch Changes
+
+- 78540d7: Upgrade server to latest@sha256:921390670128231d772be55817b2ed79484989f3891b1318e5f568d96f2249ae
+
 ## 0.1.2
 
 ### Patch Changes
