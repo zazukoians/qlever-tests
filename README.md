@@ -42,6 +42,17 @@ To stop the stack, you can use:
 docker compose --profile olympics down
 ```
 
+## Customize using specific environment variables
+
+Our custom container image for the server allows you to tweak the default behavior of the data download and the indexing using environment variables.
+
+- `SHOULD_INDEX`: If set to `true`, the server will index the data. If set to `false`, the server will not index the data. If the data needs to be downloaded, then the value will be swicth to `true` in all cases. Default is `false`.
+- `FORCE_INDEXING`: If set to `true`, the server will force the indexing of the data. Default is `false`.
+- `SHOULD_DOWNLOAD`: If set to `true`, the server will download the data. If the input file already exists, then the value would be set to `false` automatically. Default is `true`.
+- `FORCE_DOWNLOAD`: If set to `true`, the server will force the download of the data, even if `SHOULD_DOWNLOAD` is set to `false`. Default is `false`.
+
+If you want to persist the data, you can mount a volume to the `/home/qlever/data` directory.
+
 ## Relevant information about the QLever
 
 - [Some features are still missing](https://github.com/ad-freiburg/qlever/issues/615), but are being worked on.
