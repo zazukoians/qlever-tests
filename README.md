@@ -45,3 +45,4 @@ docker compose --profile olympics down
 ## Relevant information about the QLever
 
 - [Some features are still missing](https://github.com/ad-freiburg/qlever/issues/615), but are being worked on.
+- [Current deviations from the SPARQL 1.1 standard](https://github.com/ad-freiburg/qlever/wiki/Current-deviations-from-the-SPARQL-1.1-standard)
