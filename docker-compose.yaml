@@ -45,6 +45,8 @@ services:
     stop_grace_period: 0s
     ports:
       - "7001:7001"
+    environment:
+      - FORCE_INDEXING=true
     env_file:
       - local.env
     volumes:
