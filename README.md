@@ -53,6 +53,10 @@ Our custom container image for the server allows you to tweak the default behavi
 
 If you want to persist the data, you can mount a volume to the `/home/qlever/data` directory.
 
+The custom image for the UI also offers some environment variables to customize the behavior:
+
+- `MAP_VIEW_BASE_URL`: The base URL for the map view. Default is `""`, which will not display any button to open the map view.
+
 ## Relevant information about the QLever
 
 - [Some features are still missing](https://github.com/ad-freiburg/qlever/issues/615), but are being worked on.
