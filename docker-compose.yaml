@@ -66,3 +66,13 @@ services:
       - server-local
     env_file:
       - local.env
+
+  qlever-petrimaps:
+    profiles:
+      - local
+      - olympics
+    image: registry.zazuko.tools/ludovicm67/registry/qlever-petrimaps:latest
+    stop_grace_period: 0s
+    restart: unless-stopped
+    ports:
+      - "7003:9090"

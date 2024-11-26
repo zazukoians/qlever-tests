@@ -1,5 +1,7 @@
 #!/bin/sh
 
+MAP_VIEW_BASE_URL="${MAP_VIEW_BASE_URL:-}"
+
 set -eu
 
 # Generate Qleverfile
@@ -38,7 +40,14 @@ QLEVER_UI_WORKERS="${QLEVER_UI_WORKERS:-3}"
 QLEVER_UI_LIMIT_REQUEST_LINE="${QLEVER_UI_LIMIT_REQUEST_LINE:-10000}"
 
 # Configure the dataset
-python manage.py configure default "${QLEVER_SERVER_ENDPOINT}"
+BACKEND_SLUG="default"
+python manage.py configure "${BACKEND_SLUG}" "${QLEVER_SERVER_ENDPOINT}"
+
+# Configure the map URL if provided
+if [ -n "${MAP_VIEW_BASE_URL}" ]; then
+  echo "INFO: Setting the map view base URL to '${MAP_VIEW_BASE_URL}'"
+  python manage.py update "${BACKEND_SLUG}" "mapViewBaseURL" "${MAP_VIEW_BASE_URL}"
+fi
 
 # Start the UI
 gunicorn \

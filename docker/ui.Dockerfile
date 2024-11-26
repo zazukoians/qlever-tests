@@ -37,6 +37,8 @@ USER qlever
 
 WORKDIR /home/qlever
 
+COPY ./ui/update.py /app/backend/management/commands/update.py
+
 EXPOSE 7002
 
 ENTRYPOINT [ "" ]
