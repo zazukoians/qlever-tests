@@ -55,7 +55,7 @@ If you want to persist the data, you can mount a volume to the `/home/qlever/dat
 
 The custom image for the UI also offers some environment variables to customize the behavior:
 
-- `MAP_VIEW_BASE_URL`: The base URL for the map view. Default is `""`, which will not display any button to open the map view.
+- `MAP_VIEW_BASE_URL`: The base URL for the map view without trailing slash. Default is `""`, which will not display any button to open the map view.
 
 ## Relevant information about the QLever
 
