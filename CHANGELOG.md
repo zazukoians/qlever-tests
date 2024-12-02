@@ -1,5 +1,11 @@
 # qlever
 
+## 0.3.1
+
+### Patch Changes
+
+- d4c9ed2: Upgrade `qlever` CLI to 0.5.12
+
 ## 0.3.0
 
 ### Minor Changes
