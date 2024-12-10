@@ -1,5 +1,14 @@
 # qlever
 
+## 0.4.0
+
+### Minor Changes
+
+- e1512c7: Permissions were updated to make sure that the server and the UI can run without any issue with any user ID.
+  The persistent data is now stored in the `/data` directory.
+  Make sure to update your deployments/stacks to use the new path.
+  The default user is now `nobody` (UID: 65534).
+
 ## 0.3.1
 
 ### Patch Changes
