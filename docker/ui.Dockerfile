@@ -15,31 +15,33 @@ RUN apk add --no-cache \
   gcc python3-dev musl-dev linux-headers
 RUN pip3 install "qlever==${QLEVER_VERSION}"
 
-# Just make sure that the user qlever has a home directory, so that we can enable autocompletion
-RUN adduser -u 1000 -g 1000 -D qlever
-RUN mkdir -p /home/qlever/data && chown -R qlever:qlever /home/qlever
-RUN echo 'eval "$(register-python-argcomplete qlever)"' >> /home/qlever/.bashrc
-ENV QLEVER_ARGCOMPLETE_ENABLED=1
+# Just make sure that the user that will be running the container will have the necessary permissions
+RUN mkdir -p /qlever /data \
+  && chmod -R a+rw /data \
+  && chmod -R a+rw /qlever
+RUN echo 'eval "$(register-python-argcomplete qlever)"' >> /qlever/.bashrc
+ENV QLEVER_ARGCOMPLETE_ENABLED="1"
+ENV QLEVER_IS_RUNNING_IN_CONTAINER="1"
 
-# Make sure that qlever user owns the db directory
-RUN chown -R qlever:qlever /app/db
+# Make sure that current user owns the db directory
+RUN chmod -R a+rw /app/db
 
 # Include some useful scripts
-RUN mkdir -p /home/qlever/scripts
-COPY ./common/generate-qleverfile.sh /home/qlever/scripts/
-COPY ./ui/entrypoint.sh /home/qlever/scripts/
-RUN chmod +x /home/qlever/scripts/*.sh
+RUN mkdir -p /qlever/scripts
+COPY ./common/generate-qleverfile.sh /qlever/scripts/
+COPY ./ui/entrypoint.sh /qlever/scripts/
+RUN chmod +x /qlever/scripts/*.sh
 COPY ./ui/docker.sh /usr/bin/docker
 RUN chmod +x /usr/bin/docker
 
-# Switch back to the qlever user
-USER qlever
+# Use the nobody user by default
+USER 65534
 
-WORKDIR /home/qlever
+WORKDIR /qlever
 
 COPY ./ui/update.py /app/backend/management/commands/update.py
 
 EXPOSE 7002
 
 ENTRYPOINT [ "" ]
-CMD [ "/home/qlever/scripts/entrypoint.sh" ]
+CMD [ "/qlever/scripts/entrypoint.sh" ]
