@@ -15,12 +15,12 @@ echo "INFO: Indexing : should index = ${SHOULD_INDEX} ; force indexing = ${FORCE
 echo "INFO: Data download : should download = ${SHOULD_DOWNLOAD} ; force download = ${FORCE_DOWNLOAD}"
 
 # Generate Qleverfile
-/home/qlever/scripts/generate-qleverfile.sh
+/qlever/scripts/generate-qleverfile.sh
 
 # Go to the data directory
-cd /home/qlever/data
+cd /data
 
-QLEVER_FILE_PATH="${QLEVER_FILE_PATH:-/home/qlever/data/Qleverfile}"
+QLEVER_FILE_PATH="${QLEVER_FILE_PATH:-/data/Qleverfile}"
 
 # Check if the Qleverfile exists
 if [ ! -f "${QLEVER_FILE_PATH}" ]; then

@@ -1,37 +1,36 @@
-# Check latest version here: https://pypi.org/project/qlever/
-ARG QLEVER_VERSION="0.5.12"
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:55d17079e3dc093266a1def6393d0ae7662f16120ffe9594f34013f0b14f3979
 
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:1be63d62e45db723ee3c0164aed450ee2e5f5ab06146267717f560ac40689c0d
-
-ARG QLEVER_VERSION
-
+# Upgrade depdendencies and do some cleanup
 USER root
+RUN export SUDO_FORCE_REMOVE=yes \
+  && apt-get update \
+  && apt-get upgrade -y \
+  && apt-get purge -y --auto-remove sudo \
+  && rm -rf /var/lib/apt/lists/* \
+  && apt-get clean \
+  && unset SUDO_FORCE_REMOVE \
+  && rm -f /etc/profile.d/qlever.sh /qlever/.bashrc /qlever/docker-entrypoint.sh
 
-# Install python3 and pip3, in order to install qlever
-RUN apt-get update \
-  && apt-get install -y \
-  python3 \
-  python3-pip \
-  && rm -rf /var/lib/apt/lists/*
-RUN pip3 install "qlever==${QLEVER_VERSION}"
-
-# Just make sure that the user qlever has a home directory, so that we can enable autocompletion
-RUN mkdir -p /home/qlever/data && chown -R qlever:qlever /home/qlever
-RUN echo 'eval "$(register-python-argcomplete qlever)"' >> /home/qlever/.bashrc
-ENV QLEVER_ARGCOMPLETE_ENABLED=1
+# Just make sure that the user that will be running the container will have the necessary permissions
+RUN mkdir -p /qlever /data \
+  && chmod -R a+rw /data \
+  && chmod -R a+rw /qlever
+RUN echo 'eval "$(register-python-argcomplete qlever)"' >> /qlever/.bashrc
+ENV QLEVER_ARGCOMPLETE_ENABLED="1"
+ENV QLEVER_IS_RUNNING_IN_CONTAINER="1"
 
 # Include some useful scripts
-RUN mkdir -p /home/qlever/scripts
-COPY ./common/generate-qleverfile.sh /home/qlever/scripts/
-COPY ./server/entrypoint.sh /home/qlever/scripts/
-RUN chmod +x /home/qlever/scripts/*.sh
+RUN mkdir -p /qlever/scripts
+COPY ./common/generate-qleverfile.sh /qlever/scripts/
+COPY ./server/entrypoint.sh /qlever/scripts/
+RUN chmod +x /qlever/scripts/*.sh
 
-# Switch back to the qlever user
-USER qlever
+# Use the nobody user by default
+USER 65534
 
-WORKDIR /home/qlever
+WORKDIR /qlever
 
 EXPOSE 7001
 
 ENTRYPOINT [ "" ]
-CMD [ "/home/qlever/scripts/entrypoint.sh" ]
+CMD [ "/qlever/scripts/entrypoint.sh" ]

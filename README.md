@@ -51,7 +51,7 @@ Our custom container image for the server allows you to tweak the default behavi
 - `SHOULD_DOWNLOAD`: If set to `true`, the server will download the data. If the input file already exists, then the value would be set to `false` automatically. Default is `true`.
 - `FORCE_DOWNLOAD`: If set to `true`, the server will force the download of the data, even if `SHOULD_DOWNLOAD` is set to `false`. Default is `false`.
 
-If you want to persist the data, you can mount a volume to the `/home/qlever/data` directory.
+If you want to persist the data, you can mount a volume to the `/data` directory.
 
 The custom image for the UI also offers some environment variables to customize the behavior:
 

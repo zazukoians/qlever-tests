@@ -13,7 +13,7 @@ if [ "${QLEVER_GENERATE_CONFIG_FILE}" != "true" ]; then
   exit 0
 fi
 
-QLEVER_FILE_PATH="${QLEVER_FILE_PATH:-/home/qlever/data/Qleverfile}"
+QLEVER_FILE_PATH="${QLEVER_FILE_PATH:-/data/Qleverfile}"
 dirname "${QLEVER_FILE_PATH}" | xargs mkdir -p
 
 # Set default values for some configuration fields (could be overridden by other environment variables)

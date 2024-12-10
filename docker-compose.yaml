@@ -9,7 +9,7 @@ services:
     build:
       context: ./docker/
       dockerfile: ./server.Dockerfile
-    user: 1000:1000
+    user: 65534:65534
     stop_grace_period: 0s
     ports:
       - "7001:7001"
@@ -23,6 +23,7 @@ services:
     build:
       context: ./docker/
       dockerfile: ./ui.Dockerfile
+    user: 65534:65534
     stop_grace_period: 0s
     ports:
       - "7002:7002"
@@ -41,7 +42,7 @@ services:
     build:
       context: ./docker/
       dockerfile: ./server.Dockerfile
-    user: 1000:1000
+    user: 65534:65534
     stop_grace_period: 0s
     ports:
       - "7001:7001"
@@ -50,7 +51,7 @@ services:
     env_file:
       - local.env
     volumes:
-      - ./docker/server/data.nt:/home/qlever/data/data.nt
+      - ./docker/server/data.nt:/data/data.nt:ro
 
   ui-local:
     profiles:
@@ -59,6 +60,7 @@ services:
     build:
       context: ./docker/
       dockerfile: ./ui.Dockerfile
+    user: 65534:65534
     stop_grace_period: 0s
     ports:
       - "7002:7002"
