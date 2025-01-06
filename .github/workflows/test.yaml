@@ -35,6 +35,12 @@ jobs:
         run: docker compose --profile local up -d
       - name: Wait for services to be ready
         run: sleep 10
+      - name: Show current state of Docker stack (local)
+        run: docker compose --profile local ps
+      - name: Show server logs (local)
+        run: docker compose --profile local logs server-local
+      - name: Show UI logs (local)
+        run: docker compose --profile local logs ui-local
       - name: Check endpoint using cURL
         run: 'curl -s -X POST -H "Content-Type: application/sparql-query" -d "SELECT * WHERE { ?s ?p ?o } LIMIT 1" http://localhost:7001/'
       - name: Check UI using cURL
