@@ -1,0 +1,61 @@
+name: E2E Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    timeout-minutes: 5
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      # Test Build of Docker images
+      - name: Pull Docker images (local)
+        run: docker compose --profile local pull
+      - name: Build Docker images (local)
+        run: docker compose --profile local build
+
+      # Test:
+      # - if the stack is able to be started
+      # - if a user is able to perform a basic SPARQL query
+      - name: Start Docker stack (local)
+        run: docker compose --profile local up -d
+      - name: Wait for services to be ready
+        run: sleep 10
+      - name: Show current state of Docker stack (local)
+        run: docker compose --profile local ps
+      - name: Show server logs (local)
+        run: docker compose --profile local logs server-local
+      - name: Show UI logs (local)
+        run: docker compose --profile local logs ui-local
+      - name: Check endpoint using cURL
+        run: 'curl -s -X POST -H "Content-Type: application/sparql-query" -d "SELECT * WHERE { ?s ?p ?o } LIMIT 1" http://localhost:7001/'
+      - name: Check UI using cURL
+        run: "curl -vvv -L http://localhost:7002/"
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+      - name: Stop Docker stack (local)
+        run: docker compose --profile local down
