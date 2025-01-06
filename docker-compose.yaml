@@ -96,6 +96,34 @@ services:
   ######################
   # Petrimaps instance #
   ######################
+  petrimaps-redirect-local:
+    profiles:
+      - local
+    build:
+      context: ./redirect/
+      dockerfile: ./Dockerfile
+    stop_grace_period: 0s
+    environment:
+      - PUBLIC_MAPS_URL=http://localhost:7004
+      - PUBLIC_BACKEND_URL=http://localhost:7001
+      - PRIVATE_BACKEND_URL=http://server-local:7001
+    ports:
+      - "7003:7003"
+
+  petrimaps-redirect-olympics:
+    profiles:
+      - olympics
+    build:
+      context: ./redirect/
+      dockerfile: ./Dockerfile
+    stop_grace_period: 0s
+    environment:
+      - PUBLIC_MAPS_URL=http://localhost:7004
+      - PUBLIC_BACKEND_URL=http://localhost:7001
+      - PRIVATE_BACKEND_URL=http://server-olympics:7001
+    ports:
+      - "7003:7003"
+
   qlever-petrimaps:
     profiles:
       - local
@@ -104,4 +132,4 @@ services:
     stop_grace_period: 0s
     restart: unless-stopped
     ports:
-      - "7003:9090"
+      - "7004:9090"
