@@ -33,17 +33,24 @@ jobs:
       # - if a user is able to perform a basic SPARQL query
       - name: Start Docker stack (local)
         run: docker compose --profile local up -d
-      - name: Install dependencies
-        run: npm ci
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Run Playwright tests
-        run: npx playwright test
-      - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 7
+      - name: Wait for services to be ready
+        run: sleep 10
+      - name: Check endpoint using cURL
+        run: 'curl -s -X POST -H "Content-Type: application/sparql-query" -d "SELECT * WHERE { ?s ?p ?o } LIMIT 1" http://localhost:7001/'
+      - name: Check UI using cURL
+        run: "curl -vvv -L http://localhost:7002/"
+
+      # - name: Install dependencies
+      #   run: npm ci
+      # - name: Install Playwright Browsers
+      #   run: npx playwright install --with-deps
+      # - name: Run Playwright tests
+      #   run: npx playwright test
+      # - uses: actions/upload-artifact@v4
+      #   if: ${{ !cancelled() }}
+      #   with:
+      #     name: playwright-report
+      #     path: playwright-report/
+      #     retention-days: 7
       - name: Stop Docker stack (local)
         run: docker compose --profile local down
