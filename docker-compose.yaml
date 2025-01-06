@@ -9,7 +9,7 @@ services:
     build:
       context: ./docker/
       dockerfile: ./server.Dockerfile
-    user: 65534:65534
+    user: "65534:0"
     stop_grace_period: 0s
     ports:
       - "7001:7001"
@@ -23,7 +23,7 @@ services:
     build:
       context: ./docker/
       dockerfile: ./ui.Dockerfile
-    user: 65534:65534
+    user: "65534:0"
     stop_grace_period: 0s
     ports:
       - "7002:7002"
@@ -44,7 +44,7 @@ services:
     build:
       context: ./docker/
       dockerfile: ./server.Dockerfile
-    user: 65534:65534
+    user: "65534:0"
     stop_grace_period: 0s
     ports:
       - "7001:7001"
@@ -62,7 +62,7 @@ services:
     build:
       context: ./docker/
       dockerfile: ./ui.Dockerfile
-    user: 65534:65534
+    user: "65534:0"
     stop_grace_period: 0s
     ports:
       - "7002:7002"
