@@ -73,7 +73,7 @@ services:
     profiles:
       - local
       - olympics
-    image: registry.zazuko.tools/ludovicm67/registry/qlever-petrimaps:latest
+    image: index.docker.io/adfreiburg/qlever-petrimaps:latest
     stop_grace_period: 0s
     restart: unless-stopped
     ports:
