@@ -19,7 +19,7 @@ SETTINGS_JSON   = { "ascii-prefixes-only": false, "num-triples-per-batch": 10000
 [server]
 HOST_NAME          = 127.0.0.1
 PORT               = 7019
-ACCESS_TOKEN       = ${data:NAME}_7643543846_Zs6nw7yi3Z9m
+ACCESS_TOKEN       = ${data:NAME}_7643543846_XhqryCd2gZFB
 MEMORY_FOR_QUERIES = 5G
 CACHE_MAX_SIZE     = 2G
 TIMEOUT            = 30s
