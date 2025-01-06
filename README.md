@@ -57,6 +57,14 @@ The custom image for the UI also offers some environment variables to customize 
 
 - `MAP_VIEW_BASE_URL`: The base URL for the map view without trailing slash. Default is `""`, which will not display any button to open the map view.
 
+## Persisting the data
+
+### UI
+
+The UI is persisting some data and configurations in a SQLite database.
+If you want to persist this data, you can mount a volume to the `/app/db` directory.
+If no database is found at this location, it will copy the default one.
+
 ## Relevant information about the QLever
 
 - [Some features are still missing](https://github.com/ad-freiburg/qlever/issues/615), but are being worked on.

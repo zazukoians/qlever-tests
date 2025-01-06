@@ -72,10 +72,10 @@ fi
 
 if [ "${SHOULD_INDEX}" = "true" ]; then
   echo "INFO: Indexing is enabled"
-  qlever index
+  qlever index --overwrite-existing
 elif [ "${FORCE_INDEXING}" = "true" ]; then
   echo "INFO: Forcing indexing"
-  qlever index
+  qlever index --overwrite-existing
 else
   echo "INFO: Indexing is disabled"
 fi

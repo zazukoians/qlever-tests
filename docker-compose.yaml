@@ -31,6 +31,8 @@ services:
       - server-olympics
     env_file:
       - olympics.env
+    volumes:
+      - ./volumes/olympics/ui:/app/db
 
   ###################
   # Local data file #
@@ -68,12 +70,17 @@ services:
       - server-local
     env_file:
       - local.env
+    volumes:
+      - ./volumes/local/ui:/app/db
 
+  ######################
+  # Petrimaps instance #
+  ######################
   qlever-petrimaps:
     profiles:
       - local
       - olympics
-    image: registry.zazuko.tools/ludovicm67/registry/qlever-petrimaps:latest
+    image: docker.io/adfreiburg/qlever-petrimaps:latest
     stop_grace_period: 0s
     restart: unless-stopped
     ports:

@@ -22,6 +22,15 @@ fi
 echo "INFO: Qleverfile found at '${QLEVER_FILE_PATH}'"
 cat "${QLEVER_FILE_PATH}"
 
+# Check the presence of the database
+echo "INFO: Checking the presence of the database"
+if [ ! -f "/app/db/qleverui.sqlite3" ]; then
+  echo "INFO: Database not found, use the default one"
+  cp /app/default/qleverui.sqlite3 /app/db/qleverui.sqlite3
+else
+  echo "INFO: Database found, using it"
+fi
+
 # Using `qlever` command is not working…
 # # Start the QLever UI
 # qlever ui
