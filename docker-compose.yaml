@@ -16,6 +16,16 @@ services:
     env_file:
       - olympics.env
 
+  ui-init-olympics:
+    profiles:
+      - olympics
+    image: docker.io/library/busybox
+    command: ["sh", "-c", "chown -R 65534:0 /data"]
+    stop_grace_period: 0s
+    restart: "no"
+    volumes:
+      - ./volumes/olympics/ui:/data
+
   ui-olympics:
     profiles:
       - olympics
@@ -54,6 +64,16 @@ services:
       - local.env
     volumes:
       - ./docker/server/data.nt:/data/data.nt:ro
+
+  ui-init-local:
+    profiles:
+      - local
+    image: docker.io/library/busybox
+    command: ["sh", "-c", "chown -R 65534:0 /data"]
+    stop_grace_period: 0s
+    restart: "no"
+    volumes:
+      - ./volumes/local/ui:/data
 
   ui-local:
     profiles:
