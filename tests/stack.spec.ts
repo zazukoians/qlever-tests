@@ -11,7 +11,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Local stack", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:7002/default");
+    await page.goto("http://127.0.0.1:7002/default");
   });
 
   test("has index information", async ({ page }) => {

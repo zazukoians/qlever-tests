@@ -32,7 +32,7 @@ jobs:
       # - if the stack is able to be started
       # - if a user is able to perform a basic SPARQL query
       - name: Start Docker stack (local)
-        run: docker compose --profile local up -d && sleep 10
+        run: docker compose --profile local up -d
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
