@@ -1,5 +1,11 @@
 # qlever
 
+## 0.5.0
+
+### Minor Changes
+
+- d16eb8a: Add support for db persistence for the UI
+
 ## 0.4.0
 
 ### Minor Changes
