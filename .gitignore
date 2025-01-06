@@ -9,3 +9,4 @@ docker/server/*.nt
 !docker/server/data.nt
 
 node_modules/
+volumes/

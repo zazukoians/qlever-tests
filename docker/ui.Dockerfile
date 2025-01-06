@@ -24,7 +24,11 @@ ENV QLEVER_ARGCOMPLETE_ENABLED="1"
 ENV QLEVER_IS_RUNNING_IN_CONTAINER="1"
 
 # Make sure that current user owns the db directory
-RUN chmod -R a+rw /app/db
+# And move the default database to another location
+# It will be copied back to the db directory if it does not exist
+RUN chmod -R a+rw /app/db \
+  && mkdir -p /app/default \
+  && mv /app/db/qleverui.sqlite3 /app/default/qleverui.sqlite3
 
 # Include some useful scripts
 RUN mkdir -p /qlever/scripts
