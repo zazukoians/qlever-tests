@@ -44,6 +44,8 @@ docker compose --profile olympics down
 
 ## Customize using specific environment variables
 
+### Server
+
 Our custom container image for the server allows you to tweak the default behavior of the data download and the indexing using environment variables.
 
 - `SHOULD_INDEX`: If set to `true`, the server will index the data. If set to `false`, the server will not index the data. If the data needs to be downloaded, then the value will be swicth to `true` in all cases. Default is `false`.
@@ -51,13 +53,26 @@ Our custom container image for the server allows you to tweak the default behavi
 - `SHOULD_DOWNLOAD`: If set to `true`, the server will download the data. If the input file already exists, then the value would be set to `false` automatically. Default is `true`.
 - `FORCE_DOWNLOAD`: If set to `true`, the server will force the download of the data, even if `SHOULD_DOWNLOAD` is set to `false`. Default is `false`.
 
-If you want to persist the data, you can mount a volume to the `/data` directory.
+### UI
 
 The custom image for the UI also offers some environment variables to customize the behavior:
 
 - `MAP_VIEW_BASE_URL`: The base URL for the map view without trailing slash. Default is `""`, which will not display any button to open the map view.
 
 ## Persisting the data
+
+> [!IMPORTANT]
+> Make sure to set the correct permissions to the mounted volumes, so the server can read and write the data.
+>
+> Use the following command to set the correct permissions:
+>
+> ```sh
+> chown -R 65534:0 /path/to/volume
+> ```
+
+### Server
+
+If you want to persist the data, you can mount a volume to the `/data` directory.
 
 ### UI
 

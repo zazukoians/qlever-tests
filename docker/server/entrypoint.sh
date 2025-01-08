@@ -39,16 +39,24 @@ if [ "${HAS_INPUT_FILES}" -ne 0 ]; then
   echo "INFO: Found 'INPUT_FILES' in the Qleverfile"
 
   # Check if the input files already exist
-  if [ -f "${INPUT_FILES}" ]; then
-    echo "INFO: Input files found at '${INPUT_FILES}'"
-    SHOULD_DOWNLOAD="false" # As the input files are already present, no need to download them
-  else
-    echo "INFO: Input files not found at '${INPUT_FILES}'"
-
-    # Display the info in the logs only if the download is enabled
-    if [ "${SHOULD_DOWNLOAD}" = "true" ]; then
-      echo "INFO: Trigger download of input files…"
+  HAS_MISSING_INPUT_FILES="false"
+  for INPUT_FILE in ${INPUT_FILES}; do
+    if [ -f "${INPUT_FILE}" ]; then
+      echo "INFO: Input file found at '${INPUT_FILE}'"
+    else
+      echo "INFO: Input file not found at '${INPUT_FILE}'"
+      HAS_MISSING_INPUT_FILES="true"
     fi
+  done
+
+  # If all files are present, skip the download
+  if [ "${HAS_MISSING_INPUT_FILES}" = "false" ]; then
+    SHOULD_DOWNLOAD="false" # As the input files are already present, no need to download them
+  fi
+
+  # Display the info in the logs only if the download is enabled
+  if [ "${SHOULD_DOWNLOAD}" = "true" ]; then
+    echo "INFO: Trigger download of input files…"
   fi
 fi
 
