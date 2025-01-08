@@ -1,5 +1,11 @@
 # qlever
 
+## 0.5.1
+
+### Patch Changes
+
+- 7bb4128: Add support for multiple files
+
 ## 0.5.0
 
 ### Minor Changes
