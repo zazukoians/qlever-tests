@@ -24,8 +24,6 @@ jobs:
           node-version: lts/*
 
       # Test Build of Docker images
-      - name: Pull Docker images (local)
-        run: docker compose --profile local pull
       - name: Build Docker images (local)
         run: docker compose --profile local build
 

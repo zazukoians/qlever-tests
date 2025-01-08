@@ -61,6 +61,15 @@ The custom image for the UI also offers some environment variables to customize 
 
 ## Persisting the data
 
+> [!IMPORTANT]
+> Make sure to set the correct permissions to the mounted volumes, so the server can read and write the data.
+>
+> Use the following command to set the correct permissions:
+>
+> ```sh
+> chown -R 65534:0 /path/to/volume
+> ```
+
 ### Server
 
 If you want to persist the data, you can mount a volume to the `/data` directory.
