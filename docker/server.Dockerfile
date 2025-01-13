@@ -1,4 +1,4 @@
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:41f7547e4885646ebda0f5feb5c1e16da01a5d16ce7f9377b5a8416a9a2a507f
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:526b36fbdcbf0629c07060368b09d838b60759d8f50bf7eee70d496236a8d2cb
 
 # Upgrade depdendencies and do some cleanup
 USER root
