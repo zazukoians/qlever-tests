@@ -1,5 +1,11 @@
 # qlever
 
+## 0.5.3
+
+### Patch Changes
+
+- ec5cd7a: Add support for `auto` value for `QLEVER_GENERATE_CONFIG_FILE`
+
 ## 0.5.2
 
 ### Patch Changes
