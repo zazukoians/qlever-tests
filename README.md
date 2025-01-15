@@ -44,6 +44,10 @@ docker compose --profile olympics down
 
 ## Customize using specific environment variables
 
+### Common
+
+- `QLEVER_GENERATE_CONFIG_FILE`: If set to `true`, the server will generate a configuration file for QLever (Qleverfile) based on the environment variables. If set to `auto`, it will only generate it if the file is missing. Default is `true`.
+
 ### Server
 
 Our custom container image for the server allows you to tweak the default behavior of the data download and the indexing using environment variables.

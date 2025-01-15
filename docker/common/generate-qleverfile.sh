@@ -6,14 +6,26 @@ set -eu
 # This script generates a Qleverfile that can be used to start a QLever instance #
 ##################################################################################
 
+QLEVER_FILE_PATH="${QLEVER_FILE_PATH:-/data/Qleverfile}"
+
 # Have a way to opt-out of generating the Qleverfile
 QLEVER_GENERATE_CONFIG_FILE="${QLEVER_GENERATE_CONFIG_FILE:-true}"
+if [ "${QLEVER_GENERATE_CONFIG_FILE}" = "auto" ]; then
+  # Check if the Qleverfile already exists
+  if [ -f "${QLEVER_FILE_PATH}" ]; then
+    echo "INFO: Skipping Qleverfile generation, as 'QLEVER_GENERATE_CONFIG_FILE' is set to 'auto' and the file already exists at '${QLEVER_FILE_PATH}'"
+    exit 0
+  else
+    echo "INFO: Generating Qleverfile, as 'QLEVER_GENERATE_CONFIG_FILE' is set to 'auto' and the file does not exist at '${QLEVER_FILE_PATH}'"
+    QLEVER_GENERATE_CONFIG_FILE="true"
+  fi
+fi
+
 if [ "${QLEVER_GENERATE_CONFIG_FILE}" != "true" ]; then
   echo "INFO: Skipping Qleverfile generation, as 'QLEVER_GENERATE_CONFIG_FILE' is not set to 'true'"
   exit 0
 fi
 
-QLEVER_FILE_PATH="${QLEVER_FILE_PATH:-/data/Qleverfile}"
 dirname "${QLEVER_FILE_PATH}" | xargs mkdir -p
 
 # Set default values for some configuration fields (could be overridden by other environment variables)
