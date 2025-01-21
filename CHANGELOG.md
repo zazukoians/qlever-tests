@@ -1,5 +1,13 @@
 # qlever
 
+## 0.5.4
+
+### Patch Changes
+
+- 7466945: Set some environment variables by default
+- 7466945: Add support for Stop On Call, in order to trigger a restart of the instance.
+  To enable it, set the `STOP_ON_CALL_ENABLED` environment variable to `true`.
+
 ## 0.5.3
 
 ### Patch Changes
