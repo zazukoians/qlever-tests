@@ -91,4 +91,9 @@ fi
 qlever start
 
 # Keep the container running
-sleep infinity
+if [ "${STOP_ON_CALL_ENABLED}" = "true" ]; then
+  # This would expose another HTTP endpoint (by default on port 8080) to stop the container ; this can be useful to force a restart
+  stop_on_call
+else
+  sleep infinity
+fi
