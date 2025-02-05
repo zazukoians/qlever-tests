@@ -1,5 +1,13 @@
 # qlever
 
+## 0.5.5
+
+### Patch Changes
+
+- 4146888: chore(deps): bump adfreiburg/qlever-ui from `2114bd3` to `5ab6e9a`
+- ccc1b2d: chore(deps): bump adfreiburg/qlever from `526b36f` to `6cd5edc`
+- 327c5e0: Bump qlever CLI to 0.5.17
+
 ## 0.5.4
 
 ### Patch Changes
