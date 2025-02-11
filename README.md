@@ -56,6 +56,7 @@ Our custom container image for the server allows you to tweak the default behavi
 - `FORCE_INDEXING`: If set to `true`, the server will force the indexing of the data. Default is `false`.
 - `SHOULD_DOWNLOAD`: If set to `true`, the server will download the data. If the input file already exists, then the value would be set to `false` automatically. Default is `true`.
 - `FORCE_DOWNLOAD`: If set to `true`, the server will force the download of the data, even if `SHOULD_DOWNLOAD` is set to `false`. Default is `false`.
+- `SHOW_LOGS`: If set to `true`, the server will show the server logs. Default is `true`.
 
 ### UI
 
