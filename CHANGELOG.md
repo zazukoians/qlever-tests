@@ -1,5 +1,12 @@
 # qlever
 
+## 0.5.6
+
+### Patch Changes
+
+- 3b0c2f8: Fix: Handle case where `qlever start` is not giving the prompt back on error.
+- 3b0c2f8: Show logs by default (could be disabled using `SHOW_LOGS=false`)
+
 ## 0.5.5
 
 ### Patch Changes
