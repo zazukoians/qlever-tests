@@ -1,5 +1,13 @@
 # qlever
 
+## 0.5.7
+
+### Patch Changes
+
+- a2ab448: Bump qlever-control to 5.18
+- 86ce176: Bump UI base image to `8fe9599`
+- 6f6b709: Bump server base image to `4f3c3ed`
+
 ## 0.5.6
 
 ### Patch Changes
