@@ -15,6 +15,12 @@ docker compose --profile local up # Start the stack
 
 And then you can access the UI at `http://localhost:7002`.
 
+In case you see a permission error in the logs, you can run the following command to fix it:
+
+```sh
+docker compose --profile local up init-local -d
+```
+
 To stop the stack, you can use:
 
 ```sh
@@ -35,6 +41,12 @@ docker compose --profile olympics up # Start the stack
 ```
 
 And then you can access the UI at `http://localhost:7002`.
+
+In case you see a permission error in the logs, you can run the following command to fix it:
+
+```sh
+docker compose --profile olympics up init-olympics -d
+```
 
 To stop the stack, you can use:
 
