@@ -27,6 +27,9 @@ jobs:
       - name: Build Docker images (local)
         run: docker compose --profile local build
 
+      - name: Just make sure that permissions are fixed (local)
+        run: docker compose --profile local up init-local -d
+
       # Test:
       # - if the stack is able to be started
       # - if a user is able to perform a basic SPARQL query
