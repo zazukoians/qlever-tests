@@ -5,10 +5,11 @@ description = ""
 authors = ["Ludovic Muller <ludovicmuller1@gmail.com>"]
 readme = "README.md"
 packages = []
+package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.10"
-qlever = "^0.5.3"
+python = "^3.12"
+qlever = "^0.5.18"
 
 [build-system]
 requires = ["poetry-core"]
