@@ -1,5 +1,12 @@
 # qlever
 
+## 0.5.9
+
+### Patch Changes
+
+- cf5b304: Upgrade UI base image to 408ddf1
+- da577c0: Upgrade server base image to 607452e
+
 ## 0.5.8
 
 ### Patch Changes
