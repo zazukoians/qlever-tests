@@ -1,5 +1,5 @@
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:aa3a7f13863cea3b20e1b64b6ae1277896a10156e490e176bbbcc030af70e9f1
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:607452e143417b297142eee034c621276e056774421dac6a6e7658faea0ed626
 
 # Upgrade depdendencies and do some cleanup
 USER root
