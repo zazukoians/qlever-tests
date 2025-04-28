@@ -1,5 +1,12 @@
 # qlever
 
+## 0.5.10
+
+### Patch Changes
+
+- cfad1f0: Bump UI server image from `607452e` to `274bb6b`.
+- c6d8fec: Bump UI base image from `408ddf1` to `a51cbe8`.
+
 ## 0.5.9
 
 ### Patch Changes
