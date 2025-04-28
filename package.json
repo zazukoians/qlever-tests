@@ -1,7 +1,7 @@
 {
   "name": "qlever",
   "private": true,
-  "version": "0.5.9",
+  "version": "0.5.10",
   "description": "Custom Docker images for QLever",
   "main": "index.js",
   "scripts": {
