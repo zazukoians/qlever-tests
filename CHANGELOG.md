@@ -1,5 +1,13 @@
 # qlever
 
+## 0.5.11
+
+### Patch Changes
+
+- c8a7560: Upgrade qlever-control to 0.5.23 in the UI image.
+- e152ca1: Upgrade UI base image to 1d6ed08
+- ed70ff5: Upgrade server base image to 64a9a68
+
 ## 0.5.10
 
 ### Patch Changes
