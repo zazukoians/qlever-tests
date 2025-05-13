@@ -66,6 +66,7 @@ services:
       - FORCE_INDEXING=true
     env_file:
       - local.env
+      # - empty.env # Use this instead of local.env to start with an empty database
     volumes:
       - ./volumes/local/server:/data
       - ./docker/server/data.nt:/data/data.nt:ro
@@ -97,6 +98,7 @@ services:
       - server-local
     env_file:
       - local.env
+      # - empty.env # Use this instead of local.env to start with an empty database
     volumes:
       - ./volumes/local/ui:/app/db
 
