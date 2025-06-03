@@ -1,5 +1,12 @@
 # qlever
 
+## 0.5.13
+
+### Patch Changes
+
+- 1db872f: Upgrade server base image to `02361b6`
+- ee2b2fa: Upgrade UI base image to `6992d93`
+
 ## 0.5.12
 
 ### Patch Changes
