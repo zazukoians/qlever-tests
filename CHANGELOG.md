@@ -1,5 +1,11 @@
 # qlever
 
+## 0.5.14
+
+### Patch Changes
+
+- 79fecfd: Upgrade server base image to `f0a79a2`
+
 ## 0.5.13
 
 ### Patch Changes
