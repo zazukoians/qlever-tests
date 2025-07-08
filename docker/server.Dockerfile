@@ -1,22 +1,46 @@
-FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:40d73f4929ff30926cc8d142e08b9bb88d8cfcea75be1a509e835af0444752b9
+# Check latest version here: https://pypi.org/project/qlever/
+ARG QLEVER_VERSION="0.5.23"
 
-# Upgrade depdendencies and do some cleanup
-USER root
-RUN export SUDO_FORCE_REMOVE=yes \
-  && apt-get update \
+# Dependency images
+FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:40d73f4929ff30926cc8d142e08b9bb88d8cfcea75be1a509e835af0444752b9 AS qlever
+
+# Final image
+FROM ubuntu:24.10
+ARG QLEVER_VERSION
+
+ENV DEBIAN_FRONTEND="noninteractive"
+
+# Upgrade and install necessary packages
+RUN apt-get update \
   && apt-get upgrade -y \
-  && apt-get purge -y --auto-remove sudo \
+  && apt-get install -y \
+  bash-completion \
+  bzip2 \
+  curl \
+  libboost-iostreams1.83.0 \
+  libboost-program-options1.83.0 \
+  libboost-url1.83.0 \
+  libgomp1 \
+  libicu74 \
+  libjemalloc2 \
+  libzstd1 \
+  pipx \
+  python3 \
+  unzip \
+  uuid-runtime \
+  vim \
+  wget \
+  && apt-get autoremove -y \
   && rm -rf /var/lib/apt/lists/* \
-  && apt-get clean \
-  && unset SUDO_FORCE_REMOVE \
-  && rm -f /etc/profile.d/qlever.sh /qlever/.bashrc /qlever/docker-entrypoint.sh
+  && apt-get clean
 
 # Just make sure that the user that will be running the container will have the necessary permissions
 RUN mkdir -p /qlever /data \
   && chmod -R a+rw /data \
   && chmod -R a+rw /qlever
-RUN echo 'eval "$(register-python-argcomplete qlever)"' >> /qlever/.bashrc
+RUN echo 'eval "$(register-python-argcomplete qlever)"' >> /etc/bash.bashrc
+RUN echo 'PATH="/qlever:${PATH}"' >> /etc/bash.bashrc
 ENV QLEVER_ARGCOMPLETE_ENABLED="1"
 ENV QLEVER_IS_RUNNING_IN_CONTAINER="1"
 
@@ -29,6 +53,10 @@ RUN chmod +x /qlever/scripts/*.sh
 # Configure Stop On Call
 ENV STOP_ON_CALL_ENABLED="false"
 COPY --from=soc /app/stop_on_call /usr/bin/stop_on_call
+
+# Install QLever
+COPY --from=qlever /qlever/IndexBuilderMain /qlever/ServerMain /qlever/
+RUN pipx install --global "qlever==${QLEVER_VERSION}"
 
 # Use the nobody user by default
 USER 65534
