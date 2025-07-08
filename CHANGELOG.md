@@ -1,5 +1,15 @@
 # qlever
 
+## 0.6.0
+
+### Minor Changes
+
+- 2ae3db4: Reduce size for server image
+
+### Patch Changes
+
+- dddb578: Bump server base image to `40d73f4`
+
 ## 0.5.14
 
 ### Patch Changes
