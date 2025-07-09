@@ -6,7 +6,7 @@ FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
 FROM index.docker.io/adfreiburg/qlever:latest@sha256:40d73f4929ff30926cc8d142e08b9bb88d8cfcea75be1a509e835af0444752b9 AS qlever
 
 # Final image
-FROM ubuntu:24.10
+FROM ubuntu:25.10
 ARG QLEVER_VERSION
 
 ENV DEBIAN_FRONTEND="noninteractive"
