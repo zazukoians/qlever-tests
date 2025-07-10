@@ -44,6 +44,11 @@ RUN echo 'PATH="/qlever:${PATH}"' >> /etc/bash.bashrc
 ENV QLEVER_ARGCOMPLETE_ENABLED="1"
 ENV QLEVER_IS_RUNNING_IN_CONTAINER="1"
 
+# Install QLever
+COPY --from=qlever /qlever/IndexBuilderMain /qlever/ServerMain /qlever/
+ENV PATH="/qlever:${PATH}"
+RUN pipx install --global "qlever==${QLEVER_VERSION}"
+
 # Include some useful scripts
 RUN mkdir -p /qlever/scripts
 COPY ./common/generate-qleverfile.sh /qlever/scripts/
@@ -53,11 +58,6 @@ RUN chmod +x /qlever/scripts/*.sh
 # Configure Stop On Call
 ENV STOP_ON_CALL_ENABLED="false"
 COPY --from=soc /app/stop_on_call /usr/bin/stop_on_call
-
-# Install QLever
-COPY --from=qlever /qlever/IndexBuilderMain /qlever/ServerMain /qlever/
-ENV PATH="/qlever:${PATH}"
-RUN pipx install --global "qlever==${QLEVER_VERSION}"
 
 # Use the nobody user by default
 USER 65534
