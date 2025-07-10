@@ -56,6 +56,7 @@ COPY --from=soc /app/stop_on_call /usr/bin/stop_on_call
 
 # Install QLever
 COPY --from=qlever /qlever/IndexBuilderMain /qlever/ServerMain /qlever/
+ENV PATH="/qlever:${PATH}"
 RUN pipx install --global "qlever==${QLEVER_VERSION}"
 
 # Use the nobody user by default
