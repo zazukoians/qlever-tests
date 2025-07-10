@@ -22,9 +22,6 @@ set -euo pipefail
 echo "INFO: Indexing : should index = ${SHOULD_INDEX} ; force indexing = ${FORCE_INDEXING}"
 echo "INFO: Data download : should download = ${SHOULD_DOWNLOAD} ; force download = ${FORCE_DOWNLOAD}"
 
-# Update the PATH to include the QLever binary
-export PATH="/qlever:${PATH}"
-
 # Generate Qleverfile
 /qlever/scripts/generate-qleverfile.sh
 
