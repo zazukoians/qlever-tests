@@ -1,5 +1,13 @@
 # qlever
 
+## 0.6.1
+
+### Patch Changes
+
+- 8379488: Update `PATH` directly in the Dockerfile, so that it includes `/qlever`
+- 05d060c: Upgrade `server` base image to `7872df7`
+- 8379488: Change order of steps in the Dockerfile
+
 ## 0.6.0
 
 ### Minor Changes
