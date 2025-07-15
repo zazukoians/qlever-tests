@@ -1,5 +1,11 @@
 # qlever
 
+## 0.6.2
+
+### Patch Changes
+
+- 47c4732: Bump server base image to `3bc8906`.
+
 ## 0.6.1
 
 ### Patch Changes
