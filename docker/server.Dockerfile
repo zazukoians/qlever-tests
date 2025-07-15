@@ -3,7 +3,7 @@ ARG QLEVER_VERSION="0.5.23"
 
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:7872df70da435e1a79e59a734fd97964ad22f0deefe5ac92bcfb67f1aa1c7997 AS qlever
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:3bc890612bd594f7960c746983b82ec4804a796e559d892e2dc6ec3285d07010 AS qlever
 
 # Final image
 FROM ubuntu:24.10
