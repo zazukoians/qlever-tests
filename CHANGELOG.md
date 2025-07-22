@@ -1,5 +1,17 @@
 # qlever
 
+## 0.7.0
+
+### Minor Changes
+
+- ac9848d: Change the way how the QLever server is started.
+- ac9848d: Remove the `SHOW_LOGS` environment variable ; logs are shown by default.
+
+### Patch Changes
+
+- 8586449: Bump server base image to `382acdf`.
+- ac9848d: Add `START_ADDITIONAL_ARGS` environment variable to configure additional arguments to the `qlever start` command.
+
 ## 0.6.2
 
 ### Patch Changes
