@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Instane tweaks
-SHOW_LOGS="${SHOW_LOGS:-true}"
-
 # Tweak indexing
 SHOULD_INDEX="${SHOULD_INDEX:-false}"
 FORCE_INDEXING="${FORCE_INDEXING:-false}"
@@ -11,10 +8,8 @@ FORCE_INDEXING="${FORCE_INDEXING:-false}"
 SHOULD_DOWNLOAD="${SHOULD_DOWNLOAD:-true}"
 FORCE_DOWNLOAD="${FORCE_DOWNLOAD:-false}"
 
-# Tweak failures
-START_ERROR_FILE_PATH="${START_ERROR_FILE_PATH:-/qlever/start_error}"
-START_PIPE_FILE="${START_PIPE_FILE:-/qlever/pipe_start}"
-START_STOP_ON_ERROR="${START_STOP_ON_ERROR:-true}"
+# Additional parameters
+START_ADDITIONAL_ARGS="${START_ADDITIONAL_ARGS:-}"
 
 set -euo pipefail
 
@@ -96,57 +91,44 @@ else
   echo "INFO: Indexing is disabled"
 fi
 
-# Remove the pipe file and the error file if they exist
-rm -f "${START_PIPE_FILE}" "${START_ERROR_FILE_PATH}"
-mkfifo "${START_PIPE_FILE}" # Create a named pipe (FIFO)
-
-# Run the command inside a subshell and monitor its output
-# This is useful to detect errors and kill the process if needed, to avoid being stuck
-(
-  # Start the command and capture its PID
-  qlever start > "${START_PIPE_FILE}" 2>&1 &
-  CMD_PID=$!
-
-  # Get the logs and check for errors
-  # If an error is detected, kill the process to avoid being stuck
-  while IFS= read -r line; do
-    echo "(qlever start) ${line}"
-    case "$line" in
-      *ERROR*)
-        echo "Error detected!"
-        touch "${START_ERROR_FILE_PATH}" # Mark that an error occurred
-        kill -9 "${CMD_PID}" # Kill the process
-        break
-        ;;
-    esac
-  done < "${START_PIPE_FILE}"
-)
-
-# Check if an error was detected during the start process
-if [ -f "${START_ERROR_FILE_PATH}" ]; then
-  if [ "${START_STOP_ON_ERROR}" = "true" ]; then
-    echo "ERROR: An error occurred during the start process."
-    exit 1
-  fi
-  echo "INFO: An error occurred during the start process."
-fi
-
-# Keep the container running
+# Start the QLever server
+echo "INFO: Starting Qlever server..."
 if [ "${STOP_ON_CALL_ENABLED}" = "true" ]; then
-  if [ "${SHOW_LOGS}" = "true" ]; then
-    echo "INFO: Showing logs..."
-    qlever log &
+
+  # Start QLever in the background
+  qlever start --run-in-foreground $START_ADDITIONAL_ARGS &
+  QLEVER_PID=$!
+
+  # Start stop_on_call in the background
+  stop_on_call &
+  STOP_ON_CALL_PID=$!
+
+  # Wait for either QLever or stop_on_call to exit
+  wait -n $QLEVER_PID $STOP_ON_CALL_PID
+  EXITED_PID=$?
+
+  # Check which one exited
+  if ! kill -0 $QLEVER_PID 2>/dev/null; then
+    # QLever exited
+    wait $QLEVER_PID
+    QLEVER_EXIT_CODE=$?
+    echo "qlever exited with code $QLEVER_EXIT_CODE"
+    kill $STOP_ON_CALL_PID 2>/dev/null
+    exit $QLEVER_EXIT_CODE
+  else
+    # stop_on_call was called, so we stop QLever
+    echo ""
+    echo ""
+    echo ""
+    echo "[INFO] Stopped using stop_on_call"
+    qlever stop
+
+    # Stop QLever manually, in case it is still running (it should not be, but just in case)
+    kill $QLEVER_PID 2>/dev/null || true
+    wait $QLEVER_PID || true
+    exit 0
   fi
 
-  # This would expose another HTTP endpoint (by default on port 8080) to stop the container ; this can be useful to force a restart
-  echo "Starting stop-on-call server..."
-  stop_on_call
 else
-  if [ "${SHOW_LOGS}" = "true" ]; then
-    echo "INFO: Showing logs..."
-    qlever log
-  else
-    echo "Sleeping indefinitely..."
-    sleep infinity
-  fi
+  qlever start --run-in-foreground $START_ADDITIONAL_ARGS
 fi
