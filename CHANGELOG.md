@@ -1,5 +1,19 @@
 # qlever
 
+## 0.8.0
+
+### Minor Changes
+
+- 8b0c0b0: Various changes on the server image:
+
+  - Use Ubuntu 24.04 as base image (downgrade from 24.10)
+  - Upgrade pipx so that the `--global` option is available
+  - Upgrade server base image to `d8f20f4`
+
+### Patch Changes
+
+- e3970a0: Upgrade UI base image to `3841dee` and `qlever` CLI to 0.5.24
+
 ## 0.7.0
 
 ### Minor Changes
