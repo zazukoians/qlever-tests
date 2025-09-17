@@ -1,12 +1,12 @@
 # Check latest version here: https://pypi.org/project/qlever/
-ARG QLEVER_VERSION="0.5.23"
+ARG QLEVER_VERSION="0.5.24"
 
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:382acdf02fa3a43317a5dd5814164d1898f7070f85b0be2f2d080680ba08b5a6 AS qlever
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:d8f20f42cc3f7a739d8bf85806e7516c852979ea6f803d084e8def1ded8a3003 AS qlever
 
 # Final image
-FROM ubuntu:24.10
+FROM ubuntu:24.04
 ARG QLEVER_VERSION
 
 ENV DEBIAN_FRONTEND="noninteractive"
@@ -43,6 +43,10 @@ RUN echo 'eval "$(register-python-argcomplete qlever)"' >> /etc/bash.bashrc
 RUN echo 'PATH="/qlever:${PATH}"' >> /etc/bash.bashrc
 ENV QLEVER_ARGCOMPLETE_ENABLED="1"
 ENV QLEVER_IS_RUNNING_IN_CONTAINER="1"
+
+# Upgrade pipx (to have the `--global` option)
+RUN curl -L -o /usr/local/bin/pipx https://github.com/pypa/pipx/releases/download/1.7.1/pipx.pyz \
+  && chmod +x /usr/local/bin/pipx
 
 # Install QLever
 COPY --from=qlever /qlever/IndexBuilderMain /qlever/ServerMain /qlever/
