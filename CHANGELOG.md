@@ -1,5 +1,11 @@
 # qlever
 
+## 0.8.1
+
+### Patch Changes
+
+- 40c017e: Use `eeadf22` as server base image
+
 ## 0.8.0
 
 ### Minor Changes
