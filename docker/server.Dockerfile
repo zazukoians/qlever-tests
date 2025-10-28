@@ -1,13 +1,17 @@
 # Check latest version here: https://pypi.org/project/qlever/
-ARG QLEVER_VERSION="0.5.24"
+ARG QLEVER_VERSION="0.5.32"
+
+# Check latest pipx version here: https://github.com/pypa/pipx/releases
+ARG PIPX_VERSION="1.8.0"
 
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:eeadf2295f8dbf91666458d07854df306fa2cc1e6dfcc1fb237e3fc69d58e976 AS qlever
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:99582d5de8a4266e633b3f46fbe6cf6ced53aabf1ed9e8d6df51e73597fdbde9 AS qlever
 
 # Final image
 FROM ubuntu:24.04
 ARG QLEVER_VERSION
+ARG PIPX_VERSION
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
@@ -45,7 +49,7 @@ ENV QLEVER_ARGCOMPLETE_ENABLED="1"
 ENV QLEVER_IS_RUNNING_IN_CONTAINER="1"
 
 # Upgrade pipx (to have the `--global` option)
-RUN curl -L -o /usr/local/bin/pipx https://github.com/pypa/pipx/releases/download/1.7.1/pipx.pyz \
+RUN curl -L -o /usr/local/bin/pipx "https://github.com/pypa/pipx/releases/download/${PIPX_VERSION}/pipx.pyz" \
   && chmod +x /usr/local/bin/pipx
 
 # Install QLever
