@@ -2,7 +2,7 @@
 ARG QLEVER_VERSION="0.5.32"
 
 # Check latest pipx version here: https://github.com/pypa/pipx/releases
-ARG PIPX_VERSION="1.7.1"
+ARG PIPX_VERSION="1.8.0"
 
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
