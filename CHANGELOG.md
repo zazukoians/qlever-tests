@@ -1,5 +1,15 @@
 # qlever
 
+## 0.8.2
+
+### Patch Changes
+
+- 5323291: Upgrade `qlever` CLI to 0.5.32
+- 48510ee: Use ARG to configure pipx version
+- 7636487: Upgrade pipx to 1.8.0
+- ad0d486: Upgrade UI base image to `797c89c`
+- e51bd55: Upgrade server base image to `99582d5`
+
 ## 0.8.1
 
 ### Patch Changes
