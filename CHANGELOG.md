@@ -1,5 +1,12 @@
 # qlever
 
+## 0.8.3
+
+### Patch Changes
+
+- d96090d: Bump server base image to e3b60e1
+- 84b6b62: Upgrade qlever CLI to 0.5.33
+
 ## 0.8.2
 
 ### Patch Changes
