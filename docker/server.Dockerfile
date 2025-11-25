@@ -1,12 +1,12 @@
 # Check latest version here: https://pypi.org/project/qlever/
-ARG QLEVER_VERSION="0.5.32"
+ARG QLEVER_VERSION="0.5.33"
 
 # Check latest pipx version here: https://github.com/pypa/pipx/releases
 ARG PIPX_VERSION="1.8.0"
 
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:99582d5de8a4266e633b3f46fbe6cf6ced53aabf1ed9e8d6df51e73597fdbde9 AS qlever
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:e3b60e1c943b3dac73fef945802d7d9bd4888d755cc363baaa50f18d87a6e666 AS qlever
 
 # Final image
 FROM ubuntu:24.04
