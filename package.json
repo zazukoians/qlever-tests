@@ -10,8 +10,8 @@
   "author": "Zazuko GmbH",
   "repository": "git@github.com:zazukoians/qlever-tests.git",
   "devDependencies": {
-    "@changesets/cli": "^2.29.7",
-    "@playwright/test": "^1.56.1",
-    "@types/node": "^24.5.1"
+    "@changesets/cli": "^2.29.8",
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^24"
   }
 }
