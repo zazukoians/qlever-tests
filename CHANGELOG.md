@@ -1,5 +1,13 @@
 # qlever
 
+## 0.8.4
+
+### Patch Changes
+
+- ac5b85b: Upgrade UI base image to `a28aabe`
+- 5178a0c: Upgrade qlever CLI to 0.5.43
+- 26164cf: Upgrade server base image to `09303d5`
+
 ## 0.8.3
 
 ### Patch Changes
