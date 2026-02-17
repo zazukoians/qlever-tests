@@ -1,5 +1,13 @@
 # qlever
 
+## 0.9.0
+
+### Minor Changes
+
+- e37a139: Binaries were renamed to `qlever-index` and `qlever-server`
+- 35d79bc: Bump server base image to `90c0cff`
+- fb3f45e: Bump `qlever` CLI to 0.5.45
+
 ## 0.8.4
 
 ### Patch Changes
