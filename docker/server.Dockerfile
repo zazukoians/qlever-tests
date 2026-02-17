@@ -6,7 +6,7 @@ ARG PIPX_VERSION="1.8.0"
 
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:09303d53950aa9ec93ea14cc1127ec3cab67923fa32eb46b4b791ae1dcec0334 AS qlever
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:90c0cffc9a9158dff4c3841d5b0198cf76e67a4f47827e3321c4dff439408384 AS qlever
 
 # Final image
 FROM ubuntu:24.04
