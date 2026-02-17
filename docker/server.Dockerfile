@@ -1,12 +1,12 @@
 # Check latest version here: https://pypi.org/project/qlever/
-ARG QLEVER_VERSION="0.5.43"
+ARG QLEVER_VERSION="0.5.45"
 
 # Check latest pipx version here: https://github.com/pypa/pipx/releases
 ARG PIPX_VERSION="1.8.0"
 
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:09303d53950aa9ec93ea14cc1127ec3cab67923fa32eb46b4b791ae1dcec0334 AS qlever
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:90c0cffc9a9158dff4c3841d5b0198cf76e67a4f47827e3321c4dff439408384 AS qlever
 
 # Final image
 FROM ubuntu:24.04
@@ -53,7 +53,7 @@ RUN curl -L -o /usr/local/bin/pipx "https://github.com/pypa/pipx/releases/downlo
   && chmod +x /usr/local/bin/pipx
 
 # Install QLever
-COPY --from=qlever /qlever/IndexBuilderMain /qlever/ServerMain /qlever/
+COPY --from=qlever /qlever/qlever-index /qlever/qlever-server /qlever/*Main /qlever/
 ENV PATH="/qlever:${PATH}"
 RUN pipx install --global "qlever==${QLEVER_VERSION}"
 
