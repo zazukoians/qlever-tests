@@ -1,5 +1,11 @@
 # qlever
 
+## 0.9.1
+
+### Patch Changes
+
+- c39faa3: Bump server base image to `b346898`
+
 ## 0.9.0
 
 ### Minor Changes
