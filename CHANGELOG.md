@@ -1,5 +1,11 @@
 # qlever
 
+## 0.9.2
+
+### Patch Changes
+
+- 9f0b423: This adds `sophia-cli` as `sop` into the server image
+
 ## 0.9.1
 
 ### Patch Changes
