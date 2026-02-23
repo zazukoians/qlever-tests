@@ -4,6 +4,22 @@ ARG QLEVER_VERSION="0.5.45"
 # Check latest pipx version here: https://github.com/pypa/pipx/releases
 ARG PIPX_VERSION="1.8.0"
 
+ARG SOPHIA_CLI_VERSION="2cf13ac19e4f1e61b502267a2f6381e84993d1b1"
+
+FROM rust:bookworm AS sophia-cli-builder
+
+WORKDIR /app
+
+ARG SOPHIA_CLI_VERSION
+
+# Fetch source code of sophia-cli, in order to build it and have it available in the final image
+RUN git init \
+  && git remote add origin https://github.com/pchampin/sophia-cli.git \
+  && git fetch --depth 1 origin "${SOPHIA_CLI_VERSION}" \
+  && git checkout FETCH_HEAD \
+  && rm -rf .git
+RUN cargo build --release
+
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
 FROM index.docker.io/adfreiburg/qlever:latest@sha256:b3468980c2b4b643defbc286c3c45f6b541ca57a2fb5782154d5ba66f7cc0d11 AS qlever
@@ -66,6 +82,9 @@ RUN chmod +x /qlever/scripts/*.sh
 # Configure Stop On Call
 ENV STOP_ON_CALL_ENABLED="false"
 COPY --from=soc /app/stop_on_call /usr/bin/stop_on_call
+
+# Add sophia-cli to the image
+COPY --from=sophia-cli-builder /app/target/release/sop /usr/bin/sop
 
 # Use the nobody user by default
 USER 65534
