@@ -1,5 +1,13 @@
 # qlever
 
+## 0.9.3
+
+### Patch Changes
+
+- 26ae640: Upgrade UI base image to `6b06d1d`
+- fe667ca: Upgrade sophia-cli to `95a6d1fa170973cfdaaf3743099ba91153fb58f8`
+- 54a5030: Upgrade server base image to `09ca5e7`
+
 ## 0.9.2
 
 ### Patch Changes
