@@ -4,7 +4,7 @@ ARG QLEVER_VERSION="0.5.45"
 # Check latest pipx version here: https://github.com/pypa/pipx/releases
 ARG PIPX_VERSION="1.8.0"
 
-ARG SOPHIA_CLI_VERSION="2cf13ac19e4f1e61b502267a2f6381e84993d1b1"
+ARG SOPHIA_CLI_VERSION="95a6d1fa170973cfdaaf3743099ba91153fb58f8"
 
 FROM rust:bookworm AS sophia-cli-builder
 
