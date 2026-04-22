@@ -1,4 +1,4 @@
-FROM docker.io/denoland/deno:2.1.4
+FROM docker.io/denoland/deno:2.7.12
 
 EXPOSE 7003
 WORKDIR /app
