@@ -46,7 +46,6 @@ jobs:
             type=semver,prefix=v,pattern={{version}}
             type=semver,prefix=v,pattern={{major}}.{{minor}}
             type=semver,prefix=v,pattern={{major}}
-            type=sha
 
       - name: Build and push Docker images
         id: docker_build
@@ -112,7 +111,6 @@ jobs:
             type=semver,prefix=v,pattern={{version}}
             type=semver,prefix=v,pattern={{major}}.{{minor}}
             type=semver,prefix=v,pattern={{major}}
-            type=sha
 
       - name: Build and push Docker images
         id: docker_build
