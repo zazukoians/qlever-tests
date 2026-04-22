@@ -97,7 +97,6 @@ The UI is persisting some data and configurations in a SQLite database.
 If you want to persist this data, you can mount a volume to the `/app/db` directory.
 If no database is found at this location, it will copy the default one.
 
-## Relevant information about the QLever
+## Useful QLever Links
 
-- [Some features are still missing](https://github.com/ad-freiburg/qlever/issues/615), but are being worked on.
-- [Current deviations from the SPARQL 1.1 standard](https://github.com/ad-freiburg/qlever/wiki/Current-deviations-from-the-SPARQL-1.1-standard)
+- [Documentation](https://docs.qlever.dev/)
