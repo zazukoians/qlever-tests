@@ -1,5 +1,14 @@
 # qlever
 
+## 0.9.4
+
+### Patch Changes
+
+- 3c4f066: Bump UI base image to `6110515`
+- 9694979: Bump qlever CLI to 0.5.46
+- 565b366: Replace `npm` with `pnpm`
+- ce42df7: Bump server base image to `dfa487c`
+
 ## 0.9.3
 
 ### Patch Changes
