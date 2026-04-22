@@ -37,13 +37,13 @@ jobs:
           node-version: "lts/*"
 
       - name: Install Dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Create PR or create a new release
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: npm run release
+          publish: pnpm run release
           commit: "chore: release"
           title: "Merge to release"
         env:
