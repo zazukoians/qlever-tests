@@ -9,13 +9,13 @@ importers:
   .:
     devDependencies:
       '@changesets/cli':
-        specifier: ^2.30.0
+        specifier: ^2.31.0
         version: 2.31.0(@types/node@24.12.2)
       '@playwright/test':
         specifier: ^1.59.1
         version: 1.59.1
       '@types/node':
-        specifier: ^24
+        specifier: ^24.12.2
         version: 24.12.2
 
 packages:
