@@ -1,5 +1,13 @@
 # qlever
 
+## 0.9.5
+
+### Patch Changes
+
+- 1c3871a: Bump server base image to `6c8d7a5`
+- 25f40a0: Bump CLI to 0.5.47
+- a0c2b50: Bump UI base image to `2bdbfac`
+
 ## 0.9.4
 
 ### Patch Changes
