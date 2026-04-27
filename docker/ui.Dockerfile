@@ -1,7 +1,7 @@
 # Check latest version here: https://pypi.org/project/qlever/
 ARG QLEVER_VERSION="0.5.47"
 
-FROM index.docker.io/adfreiburg/qlever-ui:latest@sha256:61105152bbfea7d1226d4cde80cb1bb3ba68070ea1afaa0251220e7a175ecffa
+FROM index.docker.io/adfreiburg/qlever-ui:latest@sha256:2bdbfac438c8d43ae5337bb547993b1880e5c43b63871c74ca180aa123644851
 
 ARG QLEVER_VERSION
 
