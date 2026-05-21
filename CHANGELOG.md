@@ -1,5 +1,13 @@
 # qlever
 
+## 0.9.6
+
+### Patch Changes
+
+- 69118eb: Bump pipx to 1.12.0
+- 216f960: Bump server base image to `sha256:405b26993a03c636c55cf8e1b54be49463aa0f5968176e5528abd7a25c2e346e`
+- b92d8e2: Upgrade `sophia-cli` to `2b7221ca0e6776c3a382f90f9c66cc0d0b37cb71`
+
 ## 0.9.5
 
 ### Patch Changes
