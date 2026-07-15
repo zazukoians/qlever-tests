@@ -1,5 +1,14 @@
 # qlever
 
+## 0.9.8
+
+### Patch Changes
+
+- 4977011: Bump qlever CLI to 0.5.50
+- 47f7642: Use `sha256:3c4664ac63ca5322bdd5b8130dbc38ae43ad588495d8938b4d87f7cf83101870` as sha for server base image
+- fdeaad2: Include `liburing2` in server container image
+- 993ff85: Bump pipx to 1.15.0
+
 ## 0.9.7
 
 ### Patch Changes
