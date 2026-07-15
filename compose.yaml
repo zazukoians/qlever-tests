@@ -137,7 +137,7 @@ services:
     profiles:
       - local
       - olympics
-    image: docker.io/adfreiburg/qlever-petrimaps:commit-9beca55 # newer images seems to be broken
+    image: docker.io/adfreiburg/qlever-petrimaps
     stop_grace_period: 0s
     restart: unless-stopped
     ports:
