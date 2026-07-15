@@ -1,5 +1,5 @@
 # Check latest version here: https://pypi.org/project/qlever/
-ARG QLEVER_VERSION="0.5.47"
+ARG QLEVER_VERSION="0.5.50"
 
 # Check latest pipx version here: https://github.com/pypa/pipx/releases
 ARG PIPX_VERSION="1.12.0"
