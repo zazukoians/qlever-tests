@@ -44,6 +44,7 @@ RUN apt-get update \
   libgomp1 \
   libicu74 \
   libjemalloc2 \
+  liburing2 \
   libzstd1 \
   pipx \
   python3 \
