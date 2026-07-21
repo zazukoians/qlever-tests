@@ -22,7 +22,7 @@ RUN cargo build --release
 
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:3c4664ac63ca5322bdd5b8130dbc38ae43ad588495d8938b4d87f7cf83101870 AS qlever
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:3d3959f9cd97ca70a5b878ba647c4671a059597db2472bc1850f3ada99124bf5 AS qlever
 
 # Final image
 FROM ubuntu:24.04
