@@ -1,5 +1,12 @@
 # qlever
 
+## 0.9.9
+
+### Patch Changes
+
+- 4e9e379: Bump `pipx` to 1.16.1
+- 0276ffb: Use `sha256:3d3959f9cd97ca70a5b878ba647c4671a059597db2472bc1850f3ada99124bf5` digest for server base image
+
 ## 0.9.8
 
 ### Patch Changes
