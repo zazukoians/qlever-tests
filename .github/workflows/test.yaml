@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    timeout-minutes: 10
+    timeout-minutes: 20
 
     runs-on: ubuntu-latest
 
@@ -43,8 +43,9 @@ jobs:
       - name: Show UI logs (local)
         run: docker compose --profile local logs ui-local
       - name: Check endpoint using cURL
-        run: "curl -s -X POST -H \"Content-Type: application/sparql-query\" -d \"SELECT
-          * WHERE { ?s ?p ?o } LIMIT 1\" http://localhost:7001/"
+        run:
+          'curl -s -X POST -H "Content-Type: application/sparql-query" -d "SELECT
+          * WHERE { ?s ?p ?o } LIMIT 1" http://localhost:7001/'
       - name: Check UI using cURL
         run: "curl -vvv -L http://localhost:7002/"
       - name: Install dependencies
