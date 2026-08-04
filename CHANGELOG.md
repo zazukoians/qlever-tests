@@ -1,5 +1,12 @@
 # qlever
 
+## 0.9.10
+
+### Patch Changes
+
+- 0d8466c: Bump pipx to 1.16.5
+- e3be205: Bump server to `sha256:e2c9e702c99295656f1ac349595ef787af00104e0dc988a60a78e169e24fd16a`
+
 ## 0.9.9
 
 ### Patch Changes
