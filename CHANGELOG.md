@@ -1,5 +1,12 @@
 # qlever
 
+## 0.9.11
+
+### Patch Changes
+
+- a3528ca: Bump server base image to `sha256:abeb20ae245184cee2991a99c22a9bb0a62f6884bb1a03747bf7e56165cb0ca6`
+- b890a1c: Upgrade pipx to 1.16.6
+
 ## 0.9.10
 
 ### Patch Changes
