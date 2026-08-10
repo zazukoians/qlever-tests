@@ -2,7 +2,7 @@
 ARG QLEVER_VERSION="0.5.50"
 
 # Check latest pipx version here: https://github.com/pypa/pipx/releases
-ARG PIPX_VERSION="1.16.5"
+ARG PIPX_VERSION="1.16.6"
 
 ARG SOPHIA_CLI_VERSION="aa02ac13dbbe095b043d558d690acb0feae61e69"
 
@@ -22,7 +22,7 @@ RUN cargo build --release
 
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:e2c9e702c99295656f1ac349595ef787af00104e0dc988a60a78e169e24fd16a AS qlever
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:abeb20ae245184cee2991a99c22a9bb0a62f6884bb1a03747bf7e56165cb0ca6 AS qlever
 
 # Final image
 FROM ubuntu:24.04
