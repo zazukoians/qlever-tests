@@ -44,10 +44,9 @@ jobs:
 
       - name: Create PR or create a new release
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
-          publish: pnpm run release
-          commit: "chore: release"
-          title: "Merge to release"
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+          publish-script: pnpm run release
+          commit-message: "chore: release"
+          pr-title: "Merge to release"
+          github-token: ${{ steps.generate_token.outputs.token }}
