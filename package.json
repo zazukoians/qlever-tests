@@ -5,12 +5,12 @@
   "description": "Custom Docker images for QLever",
   "main": "index.js",
   "scripts": {
-    "release": "changeset tag"
+    "release": "changeset git-tag"
   },
   "author": "Zazuko GmbH",
   "repository": "git@github.com:zazukoians/qlever-tests.git",
   "devDependencies": {
-    "@changesets/cli": "^2.31.1",
+    "@changesets/cli": "^3.0.0",
     "@playwright/test": "^1.62.1",
     "@types/node": "^26.2.0"
   },
