@@ -1,5 +1,12 @@
 # qlever
 
+## 0.10.0
+
+### Minor Changes
+
+- e7935bb: Bump `qlever` cli to 0.6.0
+- d9e39bf: Bump server base image to `sha256:37d5ede193f1bffb6aebf734d15d2a4c2a3228ee102858b0c6c2e65c149a78ec`
+
 ## 0.9.11
 
 ### Patch Changes
