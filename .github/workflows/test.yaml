@@ -26,6 +26,10 @@ jobs:
       - name: Build Docker images (local)
         run: docker compose --profile local build
 
+      # Make sure the sophia-cli (sop) binary was bundled and actually runs
+      - name: Check that sophia-cli (sop) is available (local)
+        run: docker compose --profile local run --rm --no-deps --entrypoint sop server-local --version
+
       - name: Just make sure that permissions are fixed (local)
         run: docker compose --profile local up init-local -d
 
