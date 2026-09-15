@@ -1,5 +1,13 @@
 # qlever
 
+## 0.10.1
+
+### Patch Changes
+
+- c8c62f3: Bump server base image to `sha256:cbea3e13051a984a875f179a16e58aa2216843a08f733ff9b0f6a0bfe4cd887d`
+- 830b598: Bump pipx to 1.17.2
+- 830b598: Use build binaries for sophia-cli (`sop`)
+
 ## 0.10.0
 
 ### Minor Changes
