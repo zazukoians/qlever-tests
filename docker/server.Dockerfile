@@ -2,27 +2,14 @@
 ARG QLEVER_VERSION="0.6.0"
 
 # Check latest pipx version here: https://github.com/pypa/pipx/releases
-ARG PIPX_VERSION="1.16.6"
+ARG PIPX_VERSION="1.17.2"
 
-ARG SOPHIA_CLI_VERSION="aa02ac13dbbe095b043d558d690acb0feae61e69"
-
-FROM rust:bookworm AS sophia-cli-builder
-
-WORKDIR /app
-
-ARG SOPHIA_CLI_VERSION
-
-# Fetch source code of sophia-cli, in order to build it and have it available in the final image
-RUN git init \
-  && git remote add origin https://github.com/pchampin/sophia-cli.git \
-  && git fetch --depth 1 origin "${SOPHIA_CLI_VERSION}" \
-  && git checkout FETCH_HEAD \
-  && rm -rf .git
-RUN cargo build --release
+# Check latest version here: https://github.com/pchampin/sophia-cli/releases
+ARG SOPHIA_CLI_VERSION="v0.1.0-alpha3"
 
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:37d5ede193f1bffb6aebf734d15d2a4c2a3228ee102858b0c6c2e65c149a78ec AS qlever
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:cbea3e13051a984a875f179a16e58aa2216843a08f733ff9b0f6a0bfe4cd887d AS qlever
 
 # Final image
 FROM ubuntu:24.04
@@ -84,8 +71,22 @@ RUN chmod +x /qlever/scripts/*.sh
 ENV STOP_ON_CALL_ENABLED="false"
 COPY --from=soc /app/stop_on_call /usr/bin/stop_on_call
 
-# Add sophia-cli to the image
-COPY --from=sophia-cli-builder /app/target/release/sop /usr/bin/sop
+# Add sophia-cli (sop) from the upstream release, picking the prebuilt binary that
+# matches the target architecture. Releases: https://github.com/pchampin/sophia-cli/releases
+ARG SOPHIA_CLI_VERSION
+ARG TARGETARCH
+RUN set -eux; \
+  case "${TARGETARCH}" in \
+  amd64) SOP_TARGET="x86_64-unknown-linux-gnu" ;; \
+  arm64) SOP_TARGET="aarch64-unknown-linux-gnu" ;; \
+  *) echo "ERROR: unsupported TARGETARCH '${TARGETARCH}' for sophia-cli" >&2; exit 1 ;; \
+  esac; \
+  SOP_TARBALL="sop-${SOP_TARGET}.tar.gz"; \
+  curl -fsSL -o "/tmp/${SOP_TARBALL}" \
+  "https://github.com/pchampin/sophia-cli/releases/download/${SOPHIA_CLI_VERSION}/${SOP_TARBALL}"; \
+  tar -xzf "/tmp/${SOP_TARBALL}" -C /usr/bin sop; \
+  chmod +x /usr/bin/sop; \
+  rm -f "/tmp/${SOP_TARBALL}"
 
 # Use the nobody user by default
 USER 65534
