@@ -2,7 +2,7 @@
 ARG QLEVER_VERSION="0.6.0"
 
 # Check latest pipx version here: https://github.com/pypa/pipx/releases
-ARG PIPX_VERSION="1.16.6"
+ARG PIPX_VERSION="1.17.2"
 
 # Check latest version here: https://github.com/pchampin/sophia-cli/releases
 ARG SOPHIA_CLI_VERSION="v0.1.0-alpha3"
@@ -77,13 +77,13 @@ ARG SOPHIA_CLI_VERSION
 ARG TARGETARCH
 RUN set -eux; \
   case "${TARGETARCH}" in \
-    amd64) SOP_TARGET="x86_64-unknown-linux-gnu" ;; \
-    arm64) SOP_TARGET="aarch64-unknown-linux-gnu" ;; \
-    *) echo "ERROR: unsupported TARGETARCH '${TARGETARCH}' for sophia-cli" >&2; exit 1 ;; \
+  amd64) SOP_TARGET="x86_64-unknown-linux-gnu" ;; \
+  arm64) SOP_TARGET="aarch64-unknown-linux-gnu" ;; \
+  *) echo "ERROR: unsupported TARGETARCH '${TARGETARCH}' for sophia-cli" >&2; exit 1 ;; \
   esac; \
   SOP_TARBALL="sop-${SOP_TARGET}.tar.gz"; \
   curl -fsSL -o "/tmp/${SOP_TARBALL}" \
-    "https://github.com/pchampin/sophia-cli/releases/download/${SOPHIA_CLI_VERSION}/${SOP_TARBALL}"; \
+  "https://github.com/pchampin/sophia-cli/releases/download/${SOPHIA_CLI_VERSION}/${SOP_TARBALL}"; \
   tar -xzf "/tmp/${SOP_TARBALL}" -C /usr/bin sop; \
   chmod +x /usr/bin/sop; \
   rm -f "/tmp/${SOP_TARBALL}"
