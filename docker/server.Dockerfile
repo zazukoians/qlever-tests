@@ -9,7 +9,7 @@ ARG SOPHIA_CLI_VERSION="v0.1.0-alpha3"
 
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:cbea3e13051a984a875f179a16e58aa2216843a08f733ff9b0f6a0bfe4cd887d AS qlever
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:faebf9a1d36dae584b06074dc79a303e968f93c6e53135e2f4edd90d256d80c1 AS qlever
 
 # Final image
 FROM ubuntu:24.04
@@ -57,7 +57,7 @@ RUN curl -L -o /usr/local/bin/pipx "https://github.com/pypa/pipx/releases/downlo
   && chmod +x /usr/local/bin/pipx
 
 # Install QLever
-COPY --from=qlever /qlever/qlever-index /qlever/qlever-server /qlever/*Main /qlever/
+COPY --from=qlever /qlever/qlever-* /qlever/*Main /qlever/
 ENV PATH="/qlever:${PATH}"
 RUN pipx install --global "qlever==${QLEVER_VERSION}"
 
