@@ -57,7 +57,7 @@ RUN curl -L -o /usr/local/bin/pipx "https://github.com/pypa/pipx/releases/downlo
   && chmod +x /usr/local/bin/pipx
 
 # Install QLever
-COPY --from=qlever /qlever/qlever-index /qlever/qlever-server /qlever/*Main /qlever/
+COPY --from=qlever /qlever/qlever-* /qlever/*Main /qlever/
 ENV PATH="/qlever:${PATH}"
 RUN pipx install --global "qlever==${QLEVER_VERSION}"
 
