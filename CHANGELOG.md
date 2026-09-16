@@ -1,5 +1,12 @@
 # qlever
 
+## 0.10.2
+
+### Patch Changes
+
+- cf2ccad: Include all `qlever-` binaries
+- c222809: Bump server base image to `sha256:faebf9a1d36dae584b06074dc79a303e968f93c6e53135e2f4edd90d256d80c1`
+
 ## 0.10.1
 
 ### Patch Changes
