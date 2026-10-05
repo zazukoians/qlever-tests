@@ -9,7 +9,7 @@ ARG SOPHIA_CLI_VERSION="v0.1.0-alpha3"
 
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:faebf9a1d36dae584b06074dc79a303e968f93c6e53135e2f4edd90d256d80c1 AS qlever
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:fabc4660fd56b3a94bec9a1f95f34b54541860140b35a0b54a10448b5bf14770 AS qlever
 
 # Final image
 FROM ubuntu:24.04
