@@ -2,7 +2,7 @@
 ARG QLEVER_VERSION="0.6.0"
 
 # Check latest pipx version here: https://github.com/pypa/pipx/releases
-ARG PIPX_VERSION="1.17.2"
+ARG PIPX_VERSION="1.17.11"
 
 # Check latest version here: https://github.com/pchampin/sophia-cli/releases
 ARG SOPHIA_CLI_VERSION="v0.1.0-alpha3"
