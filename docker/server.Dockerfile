@@ -2,14 +2,14 @@
 ARG QLEVER_VERSION="0.6.0"
 
 # Check latest pipx version here: https://github.com/pypa/pipx/releases
-ARG PIPX_VERSION="1.17.11"
+ARG PIPX_VERSION="1.18.19"
 
 # Check latest version here: https://github.com/pchampin/sophia-cli/releases
 ARG SOPHIA_CLI_VERSION="v0.1.0-alpha3"
 
 # Dependency images
 FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
-FROM index.docker.io/adfreiburg/qlever:latest@sha256:fabc4660fd56b3a94bec9a1f95f34b54541860140b35a0b54a10448b5bf14770 AS qlever
+FROM index.docker.io/adfreiburg/qlever:latest@sha256:22bada6032ee54e80aabd94b745143f9e753ecc5921b2e2f3bd0796e75eb8c94 AS qlever
 
 # Final image
 FROM ubuntu:24.04
