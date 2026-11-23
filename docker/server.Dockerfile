@@ -12,7 +12,7 @@ FROM ghcr.io/ludovicm67/stop-on-call:v0.1.0 AS soc
 FROM index.docker.io/adfreiburg/qlever:latest@sha256:22bada6032ee54e80aabd94b745143f9e753ecc5921b2e2f3bd0796e75eb8c94 AS qlever
 
 # Final image
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 ARG QLEVER_VERSION
 ARG PIPX_VERSION
 
